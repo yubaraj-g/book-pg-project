@@ -18,10 +18,11 @@
             <input type="number" name="phone" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your phone number (+91)">
             <input type="email" name="email" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your email">
             <input type="password" name="password" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your password">
-            <input type="date" name="dob" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your date of birth" onmouseover="showtitle()" id="dob">
-            <label for="dob" id="dob-label" class="hidden absolute top-[63%] right-[29.5%] text-xs bg-gray-800 rounded text-gray-100 px-2 py-1">Enter your date of birth</label>
+            <input type="text" name="pgname" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your PG name">
+            <!-- <input type="date" name="dob" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your date of birth" onmouseover="showtitle()" id="dob">
+            <label for="dob" id="dob-label" class="hidden absolute top-[63%] right-[29.5%] text-xs bg-gray-800 rounded text-gray-100 px-2 py-1">Enter your date of birth</label> -->
             
-            <script>
+            <!-- <script>
                 const dob = document.getElementById('dob');
                 const dobLabel = document.getElementById('dob-label');
                 function showtitle() {
@@ -34,7 +35,7 @@
                         dobLabel.classList.add('hidden');
                     })
                 }
-            </script>
+            </script> -->
 
             <button class="px-4 py-2 my-4 bg-blue-600 hover:bg-blue-800 rounded-sm text-white font-semibold shadow-md">
                 <a href="">Sign up</a>
