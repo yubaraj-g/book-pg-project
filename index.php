@@ -11,16 +11,21 @@
 </head>
 
 <body class="w-full text-gray-700 bg-blue-50">
+    <header class="px-20 flex w-full bg-blue-500 py-6 text-white shadow-lg shadow-blue-300 rounded-sm justify-between">
+        <h1 class="font-extrabold text-4xl"><a href="./index.php">PG GO</a></h1>
+        <h3 class="font-bold text-xl">Welcome to PG GO</h3>
+        <button class="hidden logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600">User - Logout</button>
+    </header>
+
     <main class="px-20 flex flex-col justify-center w-full" id="main">
-        <h1 class="font-extrabold text-4xl w-full text-center bg-blue-500 pt-6 pb-6 text-white shadow-lg shadow-blue-300 rounded-sm">Welcome to PG GO</h1>
 
         <!-- Space to show login signup if the user hasn't logged in yet -->
         <div class="flex justify-center w-full">
             <div class="flex w-fit gap-6 my-4 items-center">
-                <h3 class="font-semibold">Haven't logged in yet?</h3>
-                <button class="px-5 py-2 bg-blue-600 text-white font-semibold shadow-md rounded-sm">Login</button>
-                <span class="font-semibold">or</span>
+                <h3 class="font-semibold">Don't have an account?</h3>
                 <button class="px-5 py-2 bg-blue-600 text-white font-semibold shadow-md rounded-sm">Signup</button>
+                <span class="font-semibold">or</span>
+                <button class="px-5 py-2 bg-blue-600 text-white font-semibold shadow-md rounded-sm">Login</button>
             </div>
         </div>
 
@@ -55,7 +60,7 @@
 
                         <div class="buttons flex gap-10 items-center">
                             <p class="font-bold">Price: <span>3000</span> Rs</p>
-                            <button class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
+                            <button class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400"><a href="./payment.php">Book Now</a></button>
                         </div>
                     </div>
 
@@ -194,8 +199,8 @@
 
 
     <!-- component -->
-    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- <!-- <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"> -->
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"> -->
 
     <footer class="relative bg-blue-100 mt-6 pt-8 pb-4">
         <div class="container mx-auto">
