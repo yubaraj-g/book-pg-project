@@ -3,7 +3,7 @@
 $server = "localhost";
 $username = "root";
 $password = "";
-$dbname = "";
+$dbname = "pzpdb";
 
 $conn = mysqli_connect($server, $username, $password, $dbname);
 
@@ -14,11 +14,11 @@ if(!$conn) {
 
     alert_error("Connection Failed!").mysqli_connect_error();
 } else {
-    function alert_success($sucssmsg) {
-        echo "<script>alert('$sucssmsg')</script>";
+    function log_success($sucssmsg) {
+        echo "<script>console.log('$sucssmsg')</script>";
     }
 
-    alert_success("Connection Successful.");
+    log_success("Connection Successful.");
 }
 
 ?>

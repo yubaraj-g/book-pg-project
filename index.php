@@ -1,3 +1,10 @@
+<?php
+include('./php/connect.php');
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +15,8 @@
     <title>Home - PG Booking System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </head>
 
 <body class="w-full text-gray-700 bg-blue-50">
@@ -23,9 +32,9 @@
         <div class="flex justify-center w-full">
             <div class="flex w-fit gap-6 my-4 items-center">
                 <h3 class="font-semibold">Don't have an account?</h3>
-                <button class="px-5 py-2 bg-blue-600 text-white font-semibold shadow-md rounded-sm">Signup</button>
+                <a href="./signup.php" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm">Signup</a>
                 <span class="font-semibold">or</span>
-                <button class="px-5 py-2 bg-blue-600 text-white font-semibold shadow-md rounded-sm">Login</button>
+                <a href="./login.php" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm">Login</a>
             </div>
         </div>
 
