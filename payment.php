@@ -13,10 +13,12 @@
 </head>
 
 <body class="w-full text-gray-700 bg-blue-50">
-    <header class="px-20 flex w-full bg-blue-500 py-6 text-white shadow-lg shadow-blue-300 rounded-sm justify-between">
+    <header class="px-20 flex w-full bg-blue-500 py-6 text-white shadow-md shadow-blue-200 rounded-sm justify-between items-center">
         <h1 class="font-extrabold text-4xl"><a href="./index.php">PG GO</a></h1>
         <h3 class="font-bold text-xl">Welcome to PG GO</h3>
-        <button class="logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600">User - Logout</button>
+        <form action="" method="POST">
+            <button type="submit" class="logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600">User - Logout</button>
+        </form>
     </header>
 
 

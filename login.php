@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
     if ($total_rows_data_user == 1) {
         session_start();
 
-        $_SESSION['user_email'] = $user_email;
+        $_SESSION['user_email'] = $user_email; // we have stored the email id here in session and we can use the session variable anywhere
 
         $indexpage = "./index.php";
         header('location: ' . $indexpage);
@@ -54,8 +54,8 @@ if (isset($_POST['login'])) {
 
 <body class="flex justify-center items-center w-full h-screen">
     <section class="bg-blue-200 w-2/5 p-10 rounded-md shadow-lg">
-        <form action="" class="flex flex-col justify-center items-center gap-6">
-            <h1 class="font-extrabold text-2xl">Login</h1>
+        <form action="" method="POST" class="flex flex-col justify-center items-center gap-6">
+            <h1 class="font-extrabold text-2xl">Login - PG GO</h1>
             <input type="email" name="email" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your email">
             <input type="password" name="password" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your password">
             <button type="submit" name="login" class="px-4 py-2 bg-blue-600 hover:bg-blue-800 rounded-sm text-white font-semibold shadow-md shadow-blue-500">Login</button>

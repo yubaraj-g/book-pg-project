@@ -37,6 +37,8 @@ if (!$conn) {
         if ($available_rows == 1) {
             echo "<script> alert('Account Created Successfully.') </script>";
 
+            // $_SESSION['user_email'] = $user_email;
+
 ?>
 
             <meta http-equiv="refresh" content="0; url = http://localhost/prerna/index.php" />

@@ -3,6 +3,10 @@ include('./php/connect.php');
 
 session_start();
 
+// while($user_email = null) {
+//     $_SESSION['user_email'] = $user_email;
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -20,27 +24,102 @@ session_start();
 </head>
 
 <body class="w-full text-gray-700 bg-blue-50">
-    <header class="px-20 flex w-full bg-blue-500 py-6 text-white shadow-lg shadow-blue-300 rounded-sm justify-between">
+    <header class="px-20 flex w-full bg-blue-500 py-6 text-white shadow-md shadow-blue-200 rounded-sm justify-between items-center">
         <h1 class="font-extrabold text-4xl"><a href="./index.php">PG GO</a></h1>
         <h3 class="font-bold text-xl">Welcome to PG GO</h3>
-        <button class="hidden logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600">User - Logout</button>
+
+        <?php
+
+        if(!$_SESSION['user_email']) {
+            echo "<script>alert('Please Login!')</script>";
+
+            echo "
+            <form method='POST' class='hidden'>    
+                    <button type='submit' name='logout' class='hidden logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 py-2 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600'>?</button>
+                </form>
+            ";
+        } else {
+            $session_mail = $_SESSION['user_email'];
+            echo "<script>console.log('Login Success for ' . '$session_mail');</script>";
+
+            $check_user = " SELECT * FROM pzp_user_masters WHERE `user_email` = '$session_mail' ";
+            $run_check_user = mysqli_query($conn, $check_user);
+            $result = mysqli_num_rows($run_check_user);
+
+            // get all the data from table stored in a variable
+            $all_data = mysqli_fetch_assoc($run_check_user);
+
+            if($result == 1) {
+
+                while($all_data) {
+                    $_SESSION['username'] = $all_data['user_name']; // got the username from database and stored in the session variable
+                    $sess_usernm = $_SESSION['username']; // stored in a normal variable for better usability
+
+                    ?>
+
+                    <form method='POST'>    
+                        <button type='submit' name="logout" class='logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 py-2 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600'><?php echo $sess_usernm . " - Logout"; ?></button>
+                    </form>
+
+                <?php
+
+                break;
+
+                }
+            }
+
+            if(isset($_POST['logout'])) {
+                session_unset();
+                session_destroy();
+
+                $loginpage = './login.php';
+                header('Location: '.$loginpage);
+                die();
+
+                echo "<script>console.log('Session closed. User logout.');</script>";
+            }
+        }
+
+        
+        
+        ?>
+        
     </header>
 
     <main class="px-20 flex flex-col justify-center w-full" id="main">
 
         <!-- Space to show login signup if the user hasn't logged in yet -->
-        <div class="flex justify-center w-full">
+
+        <?php
+
+        if(!$_SESSION['user_email']) {
+
+            echo "
+            <div class='flex justify-center w-full'>
+                <div class='flex w-fit gap-6 my-4 items-center'>
+                    <h3 class='font-semibold'>Don't have an account?</h3>
+                    <a href='./signup.php' class='px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm'>Signup</a>
+                    <span class='font-semibold'>or</span>
+                    <a href='./login.php' class='px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm'>Login</a>
+                </div>
+            </div>
+
+            <hr class='my-4'>
+            ";
+
+        }
+        
+        ?>
+        <!-- <div class="flex justify-center w-full">
             <div class="flex w-fit gap-6 my-4 items-center">
                 <h3 class="font-semibold">Don't have an account?</h3>
                 <a href="./signup.php" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm">Signup</a>
                 <span class="font-semibold">or</span>
                 <a href="./login.php" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm">Login</a>
             </div>
-        </div>
+        </div> -->
 
-        <hr class="my-4">
-
-        <h1 class="font-extrabold text-2xl w-full py-2">Choose your desired PG</h1>
+        <h1 class="font-extrabold text-2xl w-full py-6">Choose your desired PG</h1>
         <div class="flex gap-4 items-center">
             <p class="text-lg w-fit font-bold py-1 bg-blue-400 px-3 rounded text-white my-2">Available Paying Guest Homes: </p>
             <p class="text-md font-bold border-b border-black">Location - Azara</p>
