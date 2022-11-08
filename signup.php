@@ -10,7 +10,7 @@ include('./php/connect.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Login</title>
+    <title>User Signup - PG GO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
@@ -20,7 +20,7 @@ include('./php/connect.php');
 <body class="flex justify-center items-center w-full h-screen">
     <section class="bg-blue-200 w-2/5 p-10 rounded-md shadow-lg">
         <form action="./insert_user.php" method="POST" class="flex flex-col justify-center items-center gap-3">
-            <h1 class="font-extrabold text-2xl mb-3">Registration - PG GO</h1>
+            <h1 class="font-extrabold text-2xl mb-3">Registration</h1>
             <input type="text" name="username" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your desired username" required>
             <input type="text" name="fullname" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your full name" required>
 

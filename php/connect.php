@@ -14,11 +14,7 @@ if(!$conn) {
 
     alert_error("Connection Failed!").mysqli_connect_error();
 } else {
-    function log_success($sucssmsg) {
-        echo "<script>console.log('$sucssmsg')</script>";
-    }
-
-    log_success("Connection Successful.");
+    echo "<script>console.log('Connection Successful.');</script>";
 }
 
 ?>

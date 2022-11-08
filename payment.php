@@ -17,7 +17,7 @@
         <h1 class="font-extrabold text-4xl"><a href="./index.php">PG GO</a></h1>
         <h3 class="font-bold text-xl">Welcome to PG GO</h3>
         <form action="" method="POST">
-            <button type="submit" class="logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600">User - Logout</button>
+            <button type="submit" class="logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 py-2 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600">User - Logout</button>
         </form>
     </header>
 

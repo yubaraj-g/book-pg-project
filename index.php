@@ -3,9 +3,27 @@ include('./php/connect.php');
 
 session_start();
 
-// while($user_email = null) {
-//     $_SESSION['user_email'] = $user_email;
-// }
+while(array_key_exists('user_email', $_SESSION) == 1) {
+    $session_mail = $_SESSION['user_email'];
+
+    if (!$session_mail) {
+        echo "<script>console.log('Not logged in.')</script>";
+    } else if (isset($_POST['logout'])) {
+        session_unset();
+        session_destroy();
+    
+        $index_page = "./index.php";
+        header('location: ' . $index_page);
+        die();
+    
+        // echo "<script>console.log('session closed');</script>";
+    
+    } else {
+        echo "<script>console.log('email is : $session_mail')</script>";
+
+    }
+    break;
+}
 
 ?>
 
@@ -28,19 +46,28 @@ session_start();
         <h1 class="font-extrabold text-4xl"><a href="./index.php">PG GO</a></h1>
         <h3 class="font-bold text-xl">Welcome to PG GO</h3>
 
+        <form method='POST'>
+            <button type='submit' id='header-logout-btn' name='logout' class='hidden logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 py-2 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600'>Logout - <span id="logout-span"></span></button>
+        </form>
+    </header>
+
+    <main class="px-20 flex flex-col justify-center w-full" id="main">
+
+        <!-- Space to show login signup if the user hasn't logged in yet -->
+        <div class='flex justify-center w-full' id='no-account'>
+            <div class='flex w-fit gap-6 my-4 items-center'>
+                <h3 class='font-semibold'>Don't have an account?</h3>
+                <a href='./signup.php' class='px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm'>Signup</a>
+                <span class='font-semibold'>or</span>
+                <a href='./login.php' class='px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm'>Login</a>
+            </div>
+        </div>
+        <hr class='my-4' id='h-line'>
+
         <?php
 
-        if(!$_SESSION['user_email']) {
-            echo "<script>alert('Please Login!')</script>";
-
-            echo "
-            <form method='POST' class='hidden'>    
-                    <button type='submit' name='logout' class='hidden logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 py-2 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600'>?</button>
-                </form>
-            ";
-        } else {
+        while(array_key_exists('user_email', $_SESSION) == 1) {
             $session_mail = $_SESSION['user_email'];
-            echo "<script>console.log('Login Success for ' . '$session_mail');</script>";
 
             $check_user = " SELECT * FROM pzp_user_masters WHERE `user_email` = '$session_mail' ";
             $run_check_user = mysqli_query($conn, $check_user);
@@ -49,75 +76,32 @@ session_start();
             // get all the data from table stored in a variable
             $all_data = mysqli_fetch_assoc($run_check_user);
 
-            if($result == 1) {
+            if ($session_mail) {
+                echo "<script>
+                    let logoutBtn = document.getElementById('header-logout-btn');
+                    logoutBtn.classList.remove('hidden');
+                    logoutBtn.classList.add('flex');
+    
+                    document.getElementById('no-account').classList.remove('flex');
+                    document.getElementById('no-account').classList.add('hidden');
+                    document.getElementById('h-line').classList.add('hidden');
+                </script>";
 
                 while($all_data) {
                     $_SESSION['username'] = $all_data['user_name']; // got the username from database and stored in the session variable
                     $sess_usernm = $_SESSION['username']; // stored in a normal variable for better usability
 
-                    ?>
+                    echo "<script>console.log('$sess_usernm');</script>";
 
-                    <form method='POST'>    
-                        <button type='submit' name="logout" class='logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-900 font-medium text-md px-4 py-2 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600'><?php echo $sess_usernm . " - Logout"; ?></button>
-                    </form>
+                    echo "<script>document.getElementById('logout-span').innerHTML = '$sess_usernm';</script>";
 
-                <?php
-
-                break;
-
+                    break;
                 }
             }
-
-            if(isset($_POST['logout'])) {
-                session_unset();
-                session_destroy();
-
-                $loginpage = './login.php';
-                header('Location: '.$loginpage);
-                die();
-
-                echo "<script>console.log('Session closed. User logout.');</script>";
-            }
+            break;
         }
 
-        
-        
         ?>
-        
-    </header>
-
-    <main class="px-20 flex flex-col justify-center w-full" id="main">
-
-        <!-- Space to show login signup if the user hasn't logged in yet -->
-
-        <?php
-
-        if(!$_SESSION['user_email']) {
-
-            echo "
-            <div class='flex justify-center w-full'>
-                <div class='flex w-fit gap-6 my-4 items-center'>
-                    <h3 class='font-semibold'>Don't have an account?</h3>
-                    <a href='./signup.php' class='px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm'>Signup</a>
-                    <span class='font-semibold'>or</span>
-                    <a href='./login.php' class='px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm'>Login</a>
-                </div>
-            </div>
-
-            <hr class='my-4'>
-            ";
-
-        }
-        
-        ?>
-        <!-- <div class="flex justify-center w-full">
-            <div class="flex w-fit gap-6 my-4 items-center">
-                <h3 class="font-semibold">Don't have an account?</h3>
-                <a href="./signup.php" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm">Signup</a>
-                <span class="font-semibold">or</span>
-                <a href="./login.php" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md rounded-sm">Login</a>
-            </div>
-        </div> -->
 
         <h1 class="font-extrabold text-2xl w-full py-6">Choose your desired PG</h1>
         <div class="flex gap-4 items-center">
@@ -287,8 +271,8 @@ session_start();
 
 
     <!-- component -->
-    <!-- <!-- <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"> -->
-    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"> -->
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"> 
 
     <footer class="relative bg-blue-100 mt-6 pt-8 pb-4">
         <div class="container mx-auto">

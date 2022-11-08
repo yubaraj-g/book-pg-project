@@ -48,6 +48,20 @@
                         </select>
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
+                        <label for="pgtype" class="font-bold text-md w-1/3">Wifi Option</label>
+                        <select form="pgregister" id="pgtype" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                            <option value="shared">Free Wifi</option>
+                            <option value="single">No Wifi</option>
+                        </select>
+                    </div>
+                    <div class="flex gap-4 w-full justify-between items-center">
+                        <label for="pgtype" class="font-bold text-md w-1/3">Food Option</label>
+                        <select form="pgregister" id="pgtype" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                            <option value="shared">Free Food</option>
+                            <option value="single">Food Extra</option>
+                        </select>
+                    </div>
+                    <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgcat" class="font-bold text-md w-1/3">Your PG Category</label>
                         <select form="pgregister" id="pgcat" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
                             <option value="boys">Boys</option>

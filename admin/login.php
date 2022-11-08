@@ -1,3 +1,42 @@
+<?php
+include("../php/connect.php");
+
+if(isset($_POST['login'])) {
+    $admin_email = $_POST['email'];
+    $admin_password = $_POST['password'];
+
+    $_SESSION['admin_email'] = $admin_email;
+
+    $admin_login = " SELECT * FROM pzp_admin_masters WHERE `admin_email` = '$admin_email' && `password` = '$admin_password' ";
+    $run_admin_query = mysqli_query($conn, $admin_login);
+
+    $total_rows_data_admin = mysqli_num_rows($run_admin_query);
+
+    if ($total_rows_data_admin == 1) {
+
+        $mainpage = "./registerpg.php";
+        header('location: ' . $mainpage);
+        exit();
+
+    } else if ($total_rows_data_admin > 1) {
+        echo
+        "
+        <script>
+            alert('Error. Multiple admin emails found.');
+        </script>
+        ";
+    } else {
+        echo
+        "
+        <script>
+            alert('admin email or password not found');
+        </script>
+        ";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

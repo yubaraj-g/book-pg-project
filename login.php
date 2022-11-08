@@ -1,9 +1,12 @@
 <?php
 include("./php/connect.php");
+session_start();
 
 if (isset($_POST['login'])) {
     $user_email = $_POST['email'];
     $user_pass = $_POST['password'];
+
+    $_SESSION['user_email'] = $user_email; // we have stored the email id here in session and we can use the session variable anywhere
 
     $user_login = " SELECT * FROM pzp_user_masters WHERE `user_email` = '$user_email' && `password` = '$user_pass' ";
     $run_user_query = mysqli_query($conn, $user_login);
@@ -11,9 +14,6 @@ if (isset($_POST['login'])) {
     $total_rows_data_user = mysqli_num_rows($run_user_query);
 
     if ($total_rows_data_user == 1) {
-        session_start();
-
-        $_SESSION['user_email'] = $user_email; // we have stored the email id here in session and we can use the session variable anywhere
 
         $indexpage = "./index.php";
         header('location: ' . $indexpage);

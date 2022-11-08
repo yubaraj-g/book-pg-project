@@ -1,5 +1,39 @@
 <?php
-include("./php/connect.php");
+include("../php/connect.php");
+
+if(isset($_POST['login'])) {
+    $owner_email = $_POST['email'];
+    $owner_password = $_POST['password'];
+
+    $_SESSION['owner_email'] = $owner_email;
+
+    $owner_login = " SELECT * FROM pzp_owner_masters WHERE `owner_email` = '$owner_email' && `password` = '$owner_password' ";
+    $run_owner_query = mysqli_query($conn, $owner_login);
+
+    $total_rows_data_owner = mysqli_num_rows($run_owner_query);
+
+    if ($total_rows_data_owner == 1) {
+
+        $mainpage = "./registerpg.php";
+        header('location: ' . $mainpage);
+        exit();
+
+    } else if ($total_rows_data_owner > 1) {
+        echo
+        "
+        <script>
+            alert('Error. Multiple owner emails found.');
+        </script>
+        ";
+    } else {
+        echo
+        "
+        <script>
+            alert('owner email or password not found');
+        </script>
+        ";
+    }
+}
 
 ?>
 
@@ -10,7 +44,7 @@ include("./php/connect.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Login</title>
+    <title>PG Owner - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
