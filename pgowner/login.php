@@ -1,5 +1,6 @@
 <?php
 include("../php/connect.php");
+session_start();
 
 if(isset($_POST['login'])) {
     $owner_email = $_POST['email'];

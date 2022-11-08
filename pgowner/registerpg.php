@@ -1,3 +1,28 @@
+<?php
+include('../php/connect.php');
+session_start();
+
+if (!array_key_exists('owner_email', $_SESSION)) {
+    echo "<script>alert('Initiate Owner Login.');</script>";
+
+    ?>
+        <meta http-equiv="refresh" content="0; url = http://localhost/prerna/pgowner/login.php" />
+    <?php
+
+} else {
+    if (isset($_POST['logout'])) {
+        session_unset();
+        session_destroy();
+
+        $adminlogin = "./login.php";
+        header('Location: ' . $adminlogin);
+        die();
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,14 +32,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register PG - PG GO</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </head>
 
 <body class="w-full text-gray-700 bg-blue-50">
     <header class="flex flex-end w-full bg-blue-400 py-4 px-20">
-        <button class="logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-500 font-medium text-md px-4 py-2 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600">PG Owner - Logout</button>
+        <form method="POST">
+            <button type="submit" name="logout" class="logout rounded-md border hover:border-white hover:bg-white hover:shadow-none text-white hover:text-blue-500 font-medium text-md px-4 py-2 bg-blue-700 border-blue-700 shadow-lg shadow-blue-600"><span id="owner-name"></span> - Logout</button>
+        </form>
+
+        <?php
+
+        while (array_key_exists('owner_email', $_SESSION) == 1) {
+            $owner_mail = $_SESSION['owner_email'];
+
+            $check_owner = " SELECT * FROM pzp_owner_masters WHERE `owner_email` = '$owner_mail' ";
+            $run_check_owner = mysqli_query($conn, $check_owner);
+            $all_data = mysqli_fetch_assoc($run_check_owner);
+
+            while ($all_data) {
+                $_SESSION['owner_name'] = $all_data['full_name'];
+                $ownerName = $_SESSION['owner_name'];
+
+                echo "
+                <script>
+                    console.log('$ownerName');
+                    document.getElementById('owner-name').innerHTML = '$ownerName';
+                </script>
+                ";
+
+
+                break;
+            }
+
+            break;
+        }
+
+        ?>
     </header>
 
     <main class="px-20 w-full flex flex-col pb-16">
@@ -94,9 +150,9 @@
                     <p class="rating flex w-full gap-0.5 items-center">
                         <span class="text-xs mr-2 font-bold">Rating: </span>
                         <span class="text-xs mr-2 font-bold">3.2</span>
-                        <img src="./img/star-fill.png" alt="" class="w-4">
-                        <img src="./img/star-fill.png" alt="" class="w-4">
-                        <img src="./img/star-fill.png" alt="" class="w-4">
+                        <img src="../img/star-fill.png" alt="" class="w-4">
+                        <img src="../img/star-fill.png" alt="" class="w-4">
+                        <img src="../img/star-fill.png" alt="" class="w-4">
                     </p>
                     <!-- <h5 class="font-semibold">Specifications:</h5> -->
                     <ol class="text-sm font-bold">
