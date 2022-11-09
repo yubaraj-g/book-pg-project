@@ -82,22 +82,23 @@ if (!array_key_exists('owner_email', $_SESSION)) {
             <div class="flex flex-col w-3/5 bg-white rounded-md border border-blue-200 p-8 gap-6">
                 <h1 class="font-extrabold text-3xl text-center text-blue-500">Register Your PG with Us</h1>
                 <hr>
-                <form action="" class="flex flex-col gap-4" id="pgregister">
+                <form action="./insertpg.php" method="POST" class="flex flex-col gap-4" id="pgregister">
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgname" class="font-bold text-md w-1/3">Your PG Name :</label>
-                        <input type="text" id="pgname" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500" placeholder="Enter your PG name">
+                        <input type="text" id="pgname" name="pgname" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500" placeholder="Enter your PG name">
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="addrs1" class="font-bold text-md w-1/3">Your PG Address Line 1 :</label>
-                        <input type="text" id="addrs1" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500" placeholder="Enter your PG Address Line 1">
+                        <input type="text" id="addrs1" name="addrs1" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500" placeholder="Enter your PG Address Line 1">
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="addrs2" class="font-bold text-md w-1/3">Your PG Address Line 2 :</label>
-                        <input type="text" id="addrs2" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500" placeholder="Enter your PG Address Line 2">
+                        <input type="text" id="addrs2" name="addrs2" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500" placeholder="Enter your PG Address Line 2">
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgtype" class="font-bold text-md w-1/3">Your PG Type</label>
-                        <select form="pgregister" id="pgtype" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                        <select form="pgregister" id="pgtype" name="pgtype" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                            <option value="">select an option</option>
                             <option value="shared">Shared Room</option>
                             <option value="single">Single Room</option>
                             <option value="both">Both</option>
@@ -105,21 +106,24 @@ if (!array_key_exists('owner_email', $_SESSION)) {
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgtype" class="font-bold text-md w-1/3">Wifi Option</label>
-                        <select form="pgregister" id="pgtype" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
-                            <option value="shared">Free Wifi</option>
-                            <option value="single">No Wifi</option>
+                        <select form="pgregister" id="wifi" name="wifi" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                            <option value="">select an option</option>
+                            <option value="free wifi">Free Wifi</option>
+                            <option value="no wifi">No Wifi</option>
                         </select>
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgtype" class="font-bold text-md w-1/3">Food Option</label>
-                        <select form="pgregister" id="pgtype" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
-                            <option value="shared">Free Food</option>
-                            <option value="single">Food Extra</option>
+                        <select form="pgregister" id="food" name="food" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                            <option value="">select an option</option>
+                            <option value="free food">Free Food</option>
+                            <option value="food extra">Food Extra</option>
                         </select>
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
-                        <label for="pgcat" class="font-bold text-md w-1/3">Your PG Category</label>
-                        <select form="pgregister" id="pgcat" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                        <label for="pgcate" class="font-bold text-md w-1/3">Your PG Category</label>
+                        <select form="pgregister" id="pgcate" name="pgcate" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                            <option value="">select an option</option>
                             <option value="boys">Boys</option>
                             <option value="girls">Girls</option>
                             <option value="unisex">Unisex</option>
@@ -127,11 +131,11 @@ if (!array_key_exists('owner_email', $_SESSION)) {
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgphoto" class="font-bold text-md w-1/3">Upload a picture of your PG :</label>
-                        <input type="file" id="pgphoto" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                        <input type="file" id="pgphoto" name="pgphoto" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
                     </div>
 
                     <div class="w-full flex justify-center mt-4">
-                        <button class="bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded font-bold text-white text-lg shadow-lg shadow-blue-500 hover:shadow-none">Submit</button>
+                        <button type="submit" name="submit" class="bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded font-bold text-white text-lg shadow-lg shadow-blue-500 hover:shadow-none">Submit</button>
                     </div>
                 </form>
             </div>
