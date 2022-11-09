@@ -22,6 +22,33 @@ while(array_key_exists('user_email', $_SESSION) == 1) {
         echo "<script>console.log('email is : $session_mail')</script>";
 
     }
+
+    function redirect_payment_page() {
+        
+        $paymentpage = "./payment.php";
+        header('Location: ' . $paymentpage);
+        die();
+        
+    }
+
+    if(isset($_POST['rh-pg-book'])) {
+        redirect_payment_page();
+    }
+    if(isset($_POST['kalita-pg-book'])) {
+        redirect_payment_page();
+    }
+
+
+    break;
+
+} 
+
+while(!array_key_exists('user_email', $_SESSION)){
+    if(isset($_POST['rh-pg-book'])) {
+        echo "<script>alert('Please Log In First.');</script>";
+    } else if(isset($_POST['kalita-pg-book'])) {
+        echo "<script>alert('Please Log In First.');</script>";
+    }
     break;
 }
 
@@ -130,10 +157,10 @@ while(array_key_exists('user_email', $_SESSION) == 1) {
 
                         <span class="font-normal text-sm">Boys Hostel: Goalpara - Guwahati Rd</span>
 
-                        <div class="buttons flex gap-10 items-center">
+                        <form method="post" class="buttons flex gap-10 items-center">
                             <p class="font-bold">Price: <span>3000</span> Rs</p>
-                            <button class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400"><a href="./payment.php">Book Now</a></button>
-                        </div>
+                            <button type="submit" name="rh-pg-book" class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
+                        </form>
                     </div>
 
                     <div class="flex flex-col w-1/2 gap-4 h-full text-white">
@@ -166,10 +193,10 @@ while(array_key_exists('user_email', $_SESSION) == 1) {
 
                         <span class="font-normal text-sm">Boys Hostel: 4JHC+CXF Unnamed Rd</span>
 
-                        <div class="buttons flex gap-10 items-center">
+                        <form method="post" class="buttons flex gap-10 items-center">
                             <p class="font-bold">Price: <span>3000</span> Rs</p>
-                            <button class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
-                        </div>
+                            <button type="submit" name="kalita-pg-book" class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
+                        </form>
                     </div>
 
                     <div class="flex flex-col w-1/2 gap-4 h-full text-white">
@@ -202,10 +229,10 @@ while(array_key_exists('user_email', $_SESSION) == 1) {
 
                         <span class="font-normal text-sm">Boys Hostel: Goalpara - Guwahati Rd</span>
 
-                        <div class="buttons flex gap-10 items-center">
+                        <form method="post" class="buttons flex gap-10 items-center">
                             <p class="font-bold">Price: <span>3000</span> Rs</p>
-                            <button class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
-                        </div>
+                            <button type="submit" name="rh-pg-book" class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
+                        </form>
                     </div>
 
                     <div class="flex flex-col w-1/2 gap-4 h-full text-white">
@@ -238,10 +265,10 @@ while(array_key_exists('user_email', $_SESSION) == 1) {
 
                         <span class="font-normal text-sm">Boys Hostel: 4JHC+CXF Unnamed Rd</span>
 
-                        <div class="buttons flex gap-10 items-center">
+                        <form method="post" class="buttons flex gap-10 items-center">
                             <p class="font-bold">Price: <span>3000</span> Rs</p>
-                            <button class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
-                        </div>
+                            <button type="submit" name="kalita-pg-book" class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
+                        </form>
                     </div>
 
                     <div class="flex flex-col w-1/2 gap-4 h-full text-white">
@@ -266,6 +293,14 @@ while(array_key_exists('user_email', $_SESSION) == 1) {
     <div class="flex justify-center">
         <a href="#main" class="px-8 py-5 border border-blue-500 hover:border-blue-800 rounded-full font-bold text-xl text-blue-600 hover:text-blue-900 my-4">Go to top</a>
     </div>
+
+
+
+    <?php
+
+        
+
+    ?>
 
 
 

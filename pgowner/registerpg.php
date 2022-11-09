@@ -14,8 +14,8 @@ if (!array_key_exists('owner_email', $_SESSION)) {
         session_unset();
         session_destroy();
 
-        $adminlogin = "./login.php";
-        header('Location: ' . $adminlogin);
+        $pgownerlogin = "./login.php";
+        header('Location: ' . $pgownerlogin);
         die();
     }
 

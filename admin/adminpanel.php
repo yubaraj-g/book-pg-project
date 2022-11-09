@@ -2,14 +2,14 @@
 include('../php/connect.php');
 session_start();
 
-if(!array_key_exists('admin_email', $_SESSION)) {
+if (!array_key_exists('admin_email', $_SESSION)) {
     echo "<script>alert('Initiate Admin Login.');</script>";
-    ?>
-        <meta http-equiv="refresh" content="0; url = http://localhost/prerna/admin/login.php" />
-    <?php
+?>
+    <meta http-equiv="refresh" content="0; url = http://localhost/prerna/admin/login.php" />
+<?php
 } else {
 
-    if(isset($_POST['logout'])) {
+    if (isset($_POST['logout'])) {
         session_unset();
         session_destroy();
 
@@ -38,10 +38,10 @@ if(!array_key_exists('admin_email', $_SESSION)) {
 <body class="bg-blue-100 w-full h-screen flex flex-col text-gray-700">
     <header class="flex bg-blue-500 h-24 shadow-md px-20 items-center justify-between border-b border-blue-400">
         <h1 class="font-bold text-xl text-white py-1 border-b-2 border-white">Admin Panel</h1>
-        <a href="../admin/adminpanel.php" class="py-2 px-4 text-sm bg-blue-700 hover:bg-blue-700 text-white hover:text-white rounded-sm shadow-md border-b-4 border-gray-700 font-bold">PG Lists</a>
-        <a href="" class="py-2 px-4 font-medium text-sm bg-blue-100 hover:bg-blue-700 text-black hover:text-white rounded-sm shadow-md">PG Requests</a>
+        <a href="./adminpanel.php" class="py-2 px-4 text-sm bg-blue-700 hover:bg-blue-700 text-white hover:text-white rounded-sm shadow-md border-b-4 border-gray-900 font-bold">PG Lists</a>
+        <a href="./pg-requests.php" class="py-2 px-4 font-medium text-sm bg-blue-100 hover:bg-blue-700 text-black hover:text-white rounded-sm shadow-md">PG Requests</a>
         <form method="POST">
-        <button type="submit" name="logout" class="py-2 px-4 font-medium text-sm bg-red-800 hover:bg-blue-100 text-white hover:text-red-900 rounded-sm shadow-md">Logout</button>
+            <button type="submit" name="logout" class="py-2 px-4 font-medium text-sm bg-red-800 hover:bg-blue-100 text-white hover:text-red-900 rounded-sm shadow-md">Logout</button>
         </form>
     </header>
 

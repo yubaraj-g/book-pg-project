@@ -1,3 +1,9 @@
+<?php
+include('./php/connect.php');
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +50,7 @@
                 <!-- <div class="h-[1px] w-full bg-gray-200"></div> -->
                 <!-- <p class="font-extrabold text-2xl">Price: <span id="amount">3000</span> Rs</p> -->
 
-                <form action="" class="py-4 px-6 w-4/5 flex flex-col gap-4 items-center bg-white rounded-md border border-gray-200 shadow-lg">
+                <form method="POST" class="py-4 px-6 w-4/5 flex flex-col gap-4 items-center bg-white rounded-md border border-gray-200 shadow-lg">
                     <div class="flex gap-4 flex items-center w-full">
                         <label for="card" class="text-md font-medium w-[30%]">Card Number *</label>
                         <input type="text" name="card" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your 16 digit card number" required>
@@ -58,8 +64,57 @@
                         <input type="number" name="card" class="w-1/2 px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="3 digits CVV no." required>
                     </div>
 
-                    <a href="" class="py-3 px-6 w-full text-center bg-blue-600 text-white rounded-lg hover:bg-blue-900 font-bold text-2xl" type="submit">Pay Now</a>
+                    <button name="paynow" class="py-3 px-6 w-full text-center bg-blue-600 text-white rounded-lg hover:bg-blue-900 font-bold text-2xl" type="submit">Pay Now</button>
                 </form>
+
+                <?php
+
+                while (array_key_exists('user_email', $_SESSION) == 1) {
+                    $session_mail = $_SESSION['user_email'];
+
+                    // $check_user = " SELECT * FROM pzp_user_masters WHERE `user_email` = '$session_mail' ";
+                    // $run_check_user = mysqli_query($conn, $check_user);
+                    // $all_data = mysqli_fetch_assoc($run_check_user);
+
+                    // while($all_data) {
+                    //     $_SESSION['username'] = $all_data['user_name'];
+                    //     $sess_usernm = $_SESSION['username'];
+
+
+                        
+    
+                    //     break;
+                    // }
+
+                    if (isset($_POST['paynow'])) {
+                        $email = $session_mail;
+                        $subject = "Booking Successful - PG GO";
+                        $body = "Hi there, your PG booking has been successful in PG GO";
+                        $headers = "From: yuvrajwebdev@gmail.com";
+
+                        if(mail($email, $subject, $body, $headers)) {
+                            $sccsspage = "./booking_sucss.php";
+                            header('location: ' . $sccsspage);
+                            exit();
+                        } else {
+                            echo "Email send fail!";
+                        }
+                    }
+
+                    break;
+                } 
+                
+                if(!array_key_exists('user_email', $_SESSION)) {
+                    // $session_mail = $_SESSION['user_email'];
+                
+                    echo "<script>alert('Please Log In.');</script>";
+                    ?>
+                        <meta http-equiv="refresh" content="0; url = http://localhost/prerna/login.php" />
+                    <?php
+                
+                }
+
+                ?>
             </div>
         </div>
     </main>
