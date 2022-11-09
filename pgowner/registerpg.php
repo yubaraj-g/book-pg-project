@@ -5,9 +5,9 @@ session_start();
 if (!array_key_exists('owner_email', $_SESSION)) {
     echo "<script>alert('Initiate Owner Login.');</script>";
 
-    ?>
-        <meta http-equiv="refresh" content="0; url = http://localhost/prerna/pgowner/login.php" />
-    <?php
+?>
+    <meta http-equiv="refresh" content="0; url = http://localhost/prerna/pgowner/login.php" />
+<?php
 
 } else {
     if (isset($_POST['logout'])) {
@@ -18,7 +18,6 @@ if (!array_key_exists('owner_email', $_SESSION)) {
         header('Location: ' . $pgownerlogin);
         die();
     }
-
 }
 
 ?>
@@ -177,6 +176,37 @@ if (!array_key_exists('owner_email', $_SESSION)) {
                     <picture class="h-full">
                         <img src="../img/image1.jpg" alt="" class="object-cover w-full h-full">
                     </picture>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showTenants px-20 w-full flex flex-col pt-6 pb-16 gap-6">
+        <div class="w-full flex justify-center">
+            <h2 class="font-extrabold text-4xl text-blue-500">Your Tenants List</h2>
+        </div>
+
+        <div class="w-full flex justify-center">
+            <div class="flex w-3/5 h-80 border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4">
+                <!-- name phone email address age -->
+                <div class="overflow-hidden rounded-md w-full">
+                    <table class="w-full rounded-lg">
+                        <tr class="bg-blue-300">
+                            <th class="border border-blue-400 py-2 px-3 text-start">Name</th>
+                            <th class="border border-blue-400 py-2 px-3">Phone</th>
+                            <th class="border border-blue-400 py-2 px-3">Email</th>
+                            <th class="border border-blue-400 py-2 px-3">Address</th>
+                            <th class="border border-blue-400 py-2 px-3">Age</th>
+                            <!-- <th class="border border-blue-400 py-2 px-3">PG Name</th> -->
+                        </tr>
+                        <tr class="bg-blue-50 text-sm">
+                            <td class="border border-blue-400 py-2 px-3 text-start">Tenant 1</td>
+                            <td class="border border-blue-400 py-2 px-3 text-center">1234567890</td>
+                            <td class="border border-blue-400 py-2 px-3 text-center">xyz@gmail.com</td>
+                            <td class="border border-blue-400 py-2 px-3 text-center">Hometown</td>
+                            <td class="border border-blue-400 py-2 px-3 text-center">23</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

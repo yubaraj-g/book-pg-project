@@ -43,6 +43,34 @@ session_start();
                 <span class="font-bold text-md">Boys Hostel: Goalpara - Guwahati Rd</span>
             </div>
 
+            <section class="flex flex-col border border-blue-200 rounded-md p-6 my-4 h-fit justify-between w-2/5 bg-white items-center">
+                <h1 class="font-bold text-2xl mb-2">Enter your tenacy details</h1>
+                <form action="" method="post" class="py-4 w-full flex flex-col gap-4 items-center bg-white">
+                    <div class="flex gap-4 flex items-center w-full">
+                        <label for="fullname" class="text-md font-medium w-[30%]">Full Name *</label>
+                        <input type="text" name="fullname" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="flex gap-4 flex items-center w-full">
+                        <label for="phone" class="text-md font-medium w-[30%]">Phone No. *</label>
+                        <input type="tel" name="phone" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your phone number" maxlength="10" required>
+                    </div>
+                    <div class="flex gap-4 flex items-center w-full">
+                        <label for="email" class="text-md font-medium w-[30%]">Email *</label>
+                        <input type="text" name="email" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your email id" required>
+                    </div>
+                    <div class="flex gap-4 flex items-center w-full">
+                        <label for="address" class="text-md font-medium w-[30%]">Address *</label>
+                        <input type="text" name="address" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your permanent address" required>
+                    </div>
+                    <div class="flex gap-4 flex items-center w-full">
+                        <label for="age" class="text-md font-medium w-[30%]">Age *</label>
+                        <input type="text" name="age" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your age" required>
+                    </div>
+
+                    <button type="submit" name="submit" class="py-3 px-6 w-fit flex self-center text-center bg-blue-600 text-white rounded-lg hover:bg-blue-900 font-bold text-2xl">submit</button>
+                </form>
+            </section>
+
             <!-- Payment details -->
             <div class="payment flex flex-col py-4 w-1/2 items-center">
                 <h1 class="font-extrabold text-3xl mt-6 mb-4">Payment Info :</h1>
@@ -81,8 +109,8 @@ session_start();
                     //     $sess_usernm = $_SESSION['username'];
 
 
-                        
-    
+
+
                     //     break;
                     // }
 
@@ -92,7 +120,7 @@ session_start();
                         $body = "Hi there, your PG booking has been successful in PG GO";
                         $headers = "From: yuvrajwebdev@gmail.com";
 
-                        if(mail($email, $subject, $body, $headers)) {
+                        if (mail($email, $subject, $body, $headers)) {
                             $sccsspage = "./booking_sucss.php";
                             header('location: ' . $sccsspage);
                             exit();
@@ -102,16 +130,16 @@ session_start();
                     }
 
                     break;
-                } 
-                
-                if(!array_key_exists('user_email', $_SESSION)) {
+                }
+
+                if (!array_key_exists('user_email', $_SESSION)) {
                     // $session_mail = $_SESSION['user_email'];
-                
+
                     echo "<script>alert('Please Log In.');</script>";
-                    ?>
-                        <meta http-equiv="refresh" content="0; url = http://localhost/prerna/login.php" />
-                    <?php
-                
+                ?>
+                    <meta http-equiv="refresh" content="0; url = http://localhost/prerna/login.php" />
+                <?php
+
                 }
 
                 ?>
