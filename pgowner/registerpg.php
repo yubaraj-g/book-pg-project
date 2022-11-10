@@ -87,6 +87,10 @@ if (!array_key_exists('owner_email', $_SESSION)) {
                         <input type="text" id="pgname" name="pgname" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500" placeholder="Enter your PG name">
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
+                        <label for="pgphone" class="font-bold text-md w-1/3">Your PG Phone :</label>
+                        <input type="tel" id="pgphone" name="pgphone" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500" placeholder="Enter your PG contact number" maxlength="10">
+                    </div>
+                    <div class="flex gap-4 w-full justify-between items-center">
                         <label for="addrs1" class="font-bold text-md w-1/3">Your PG Address Line 1 :</label>
                         <input type="text" id="addrs1" name="addrs1" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500" placeholder="Enter your PG Address Line 1">
                     </div>
@@ -98,39 +102,43 @@ if (!array_key_exists('owner_email', $_SESSION)) {
                         <label for="pgtype" class="font-bold text-md w-1/3">Your PG Type</label>
                         <select form="pgregister" id="pgtype" name="pgtype" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
                             <option value="">select an option</option>
-                            <option value="shared">Shared Room</option>
-                            <option value="single">Single Room</option>
-                            <option value="both">Both</option>
+                            <option value="Shared">Shared Room</option>
+                            <option value="Single">Single Room</option>
+                            <option value="Both">Both</option>
                         </select>
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgtype" class="font-bold text-md w-1/3">Wifi Option</label>
                         <select form="pgregister" id="wifi" name="wifi" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
                             <option value="">select an option</option>
-                            <option value="free wifi">Free Wifi</option>
-                            <option value="no wifi">No Wifi</option>
+                            <option value="Free wifi">Free Wifi</option>
+                            <option value="No wifi">No Wifi</option>
                         </select>
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgtype" class="font-bold text-md w-1/3">Food Option</label>
                         <select form="pgregister" id="food" name="food" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
                             <option value="">select an option</option>
-                            <option value="free food">Free Food</option>
-                            <option value="food extra">Food Extra</option>
+                            <option value="Free food">Free Food</option>
+                            <option value="Food extra">Food Extra</option>
                         </select>
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgcate" class="font-bold text-md w-1/3">Your PG Category</label>
                         <select form="pgregister" id="pgcate" name="pgcate" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
                             <option value="">select an option</option>
-                            <option value="boys">Boys</option>
-                            <option value="girls">Girls</option>
-                            <option value="unisex">Unisex</option>
+                            <option value="Boys">Boys</option>
+                            <option value="Girls">Girls</option>
+                            <option value="Unisex">Unisex</option>
                         </select>
                     </div>
                     <div class="flex gap-4 w-full justify-between items-center">
                         <label for="pgphoto" class="font-bold text-md w-1/3">Upload a picture of your PG :</label>
                         <input type="file" id="pgphoto" name="pgphoto" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500">
+                    </div>
+                    <div class="flex gap-4 w-full justify-between items-center">
+                        <label for="pgprice" class="font-bold text-md w-1/3">Enter the price of your PG (Rs) :</label>
+                        <input type="number" id="pgprice" name="pgprice" class="py-2 px-3 rounded w-2/3 border border-gray-300 outline-none focus:outline-3 focus:outline-blue-500 overflow-none" placeholder="Enter monthly price of your PG">
                     </div>
 
                     <div class="w-full flex justify-center mt-4">
@@ -153,9 +161,9 @@ if (!array_key_exists('owner_email', $_SESSION)) {
                     <p class="rating flex w-full gap-0.5 items-center">
                         <span class="text-xs mr-2 font-bold">Rating: </span>
                         <span class="text-xs mr-2 font-bold">3.2</span>
-                        <img src="../img/star-fill.png" alt="" class="w-4">
-                        <img src="../img/star-fill.png" alt="" class="w-4">
-                        <img src="../img/star-fill.png" alt="" class="w-4">
+                        <img src="../img/star-fill.png" alt="star-rating" class="w-4">
+                        <img src="../img/star-fill.png" alt="star-rating" class="w-4">
+                        <img src="../img/star-fill.png" alt="star-rating" class="w-4">
                     </p>
                     <!-- <h5 class="font-semibold">Specifications:</h5> -->
                     <ol class="text-sm font-bold">

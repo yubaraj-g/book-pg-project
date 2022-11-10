@@ -51,59 +51,61 @@ if (!array_key_exists('admin_email', $_SESSION)) {
         <div class="overflow-hidden rounded-md w-full border border-blue-500">
             <table class="w-full rounded-lg">
                 <tr class="bg-blue-300">
-                    <th class="border border-blue-400 py-2 px-3 text-start w-2/6">Name</th>
+                    <th class="border border-blue-400 py-2 px-3 text-start w-1/5">Name</th>
+                    <th class="border border-blue-400 py-2 px-3 text-start">Owner Email</th>
+                    <th class="border border-blue-400 py-2 px-3">PG Phone</th>
+                    <th class="border border-blue-400 py-2 px-3">Address Line 1</th>
+                    <th class="border border-blue-400 py-2 px-3">Address Line 2</th>
                     <th class="border border-blue-400 py-2 px-3">Type</th>
+                    <th class="border border-blue-400 py-2 px-3">Wifi</th>
+                    <th class="border border-blue-400 py-2 px-3">Food</th>
+                    <th class="border border-blue-400 py-2 px-3">PG Category</th>
                     <th class="border border-blue-400 py-2 px-3">Price</th>
-                    <th class="border border-blue-400 py-2 px-3">View</th>
                 </tr>
-                <tr class="bg-blue-50 text-sm">
-                    <td class="border border-blue-400 py-2 px-3 text-start w-2/6">PG 1</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">Shared</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">4000</td>
-                    <td class="border border-blue-400 py-2 px-3">
-                        <button class="bg-blue-600 py-1 px-2 text-white hover:bg-blue-900 shadow-md flex justify-center mx-auto w-1/3">View Details</button>
-                    </td>
-                </tr>
-                <tr class="bg-blue-50 text-sm">
-                    <td class="border border-blue-400 py-2 px-3 text-start w-2/6">PG 1</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">Shared</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">4000</td>
-                    <td class="border border-blue-400 py-2 px-3">
-                        <button class="bg-blue-600 py-1 px-2 text-white hover:bg-blue-900 shadow-md flex justify-center mx-auto w-1/3">View Details</button>
-                    </td>
-                </tr>
-                <tr class="bg-blue-50 text-sm">
-                    <td class="border border-blue-400 py-2 px-3 text-start w-2/6">PG 1</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">Shared</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">4000</td>
-                    <td class="border border-blue-400 py-2 px-3">
-                        <button class="bg-blue-600 py-1 px-2 text-white hover:bg-blue-900 shadow-md flex justify-center mx-auto w-1/3">View Details</button>
-                    </td>
-                </tr>
-                <tr class="bg-blue-50 text-sm">
-                    <td class="border border-blue-400 py-2 px-3 text-start w-2/6">PG 1</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">Shared</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">4000</td>
-                    <td class="border border-blue-400 py-2 px-3">
-                        <button class="bg-blue-600 py-1 px-2 text-white hover:bg-blue-900 shadow-md flex justify-center mx-auto w-1/3">View Details</button>
-                    </td>
-                </tr>
-                <tr class="bg-blue-50 text-sm">
-                    <td class="border border-blue-400 py-2 px-3 text-start w-2/6">PG 1</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">Shared</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">4000</td>
-                    <td class="border border-blue-400 py-2 px-3">
-                        <button class="bg-blue-600 py-1 px-2 text-white hover:bg-blue-900 shadow-md flex justify-center mx-auto w-1/3">View Details</button>
-                    </td>
-                </tr>
-                <tr class="bg-blue-50 text-sm">
-                    <td class="border border-blue-400 py-2 px-3 text-start w-2/6">PG 1</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">Shared</td>
-                    <td class="border border-blue-400 py-2 px-3 text-center">4000</td>
-                    <td class="border border-blue-400 py-2 px-3">
-                        <button class="bg-blue-600 py-1 px-2 text-white hover:bg-blue-900 shadow-md flex justify-center mx-auto w-1/3">View Details</button>
-                    </td>
-                </tr>
+
+                <?php
+
+                while(array_key_exists('admin_email', $_SESSION) == 1) {
+                    $approved_pgs = " SELECT * FROM `pzp_pg_master` ";
+                    $run_approved_pgs = mysqli_query($conn, $approved_pgs);
+
+                    while($result_pgs = mysqli_fetch_array($run_approved_pgs)) {
+                        $pgname = $result_pgs['pg_name'];
+                        $ownermail = $result_pgs['owner_email'];
+                        $pgphone = $result_pgs['pg_phone'];
+                        $address1 = $result_pgs['address1'];
+                        $address2 = $result_pgs['address2'];
+                        $pgtype = $result_pgs['pgtype'];
+                        $wifi = $result_pgs['wifi'];
+                        $food = $result_pgs['food'];
+                        $pgctgry = $result_pgs['pg_category'];
+                        $pgimg = $result_pgs['image'];
+                        $price = $result_pgs['price'];
+                    
+
+                    ?>
+
+                    <tr class="bg-blue-50 text-sm">
+                        <td class="border border-blue-400 py-2 px-3 text-start w-1/5"><?php echo $pgname; ?></td>
+                        <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $ownermail; ?></td>
+                        <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $pgphone; ?></td>
+                        <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $address1; ?></td>
+                        <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $address2; ?></td>
+                        <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $pgtype; ?></td>
+                        <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $wifi; ?></td>
+                        <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $food; ?></td>
+                        <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $pgctgry; ?></td>
+                        <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $price; ?></td>
+                    </tr>
+
+
+                    <?php
+                    }
+
+                break;
+                }
+                ?>
+                
             </table>
         </div>
     </main>

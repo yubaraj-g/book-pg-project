@@ -18,7 +18,7 @@ session_start();
 </head>
 <body class="flex justify-center">
 
-    <h1 class="py-12">Booking Success. Check your email.</h1>
+    <h1 class="py-12 font-bold text-xl">Booking Success. Check your email.</h1>
     
 </body>
 </html>

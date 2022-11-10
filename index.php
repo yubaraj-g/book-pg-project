@@ -19,7 +19,7 @@ while(array_key_exists('user_email', $_SESSION) == 1) {
         // echo "<script>console.log('session closed');</script>";
     
     } else {
-        echo "<script>console.log('email is : $session_mail')</script>";
+        echo "<script>console.log('user email is : $session_mail')</script>";
 
     }
 
@@ -30,14 +30,6 @@ while(array_key_exists('user_email', $_SESSION) == 1) {
         die();
         
     }
-
-    if(isset($_POST['rh-pg-book'])) {
-        redirect_payment_page();
-    }
-    if(isset($_POST['kalita-pg-book'])) {
-        redirect_payment_page();
-    }
-
 
     break;
 
@@ -118,7 +110,7 @@ while(!array_key_exists('user_email', $_SESSION)){
                     $_SESSION['username'] = $all_data['user_name']; // got the username from database and stored in the session variable
                     $sess_usernm = $_SESSION['username']; // stored in a normal variable for better usability
 
-                    echo "<script>console.log('$sess_usernm');</script>";
+                    // echo "<script>console.log('$sess_usernm');</script>";
 
                     echo "<script>document.getElementById('logout-span').innerHTML = '$sess_usernm';</script>";
 
@@ -137,150 +129,98 @@ while(!array_key_exists('user_email', $_SESSION)){
         </div>
 
         <section class="homes w-full flex flex-col gap-8">
-            <div class="flex w-full py-4 gap-6">
-                <div class="flex w-1/2 h-80 border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4">
-                    <div class="w-1/2 h-full flex flex-col gap-4 justify-between">
-                        <h3 class="font-bold text-xl">RH PG</h3>
-                        <p class="rating flex w-full gap-0.5 items-center">
-                            <span class="text-xs mr-2 font-bold">Rating: </span>
-                            <span class="text-xs mr-2 font-bold">3.2</span>
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                        </p>
-                        <!-- <h5 class="font-semibold">Specifications:</h5> -->
-                        <ol class="text-sm font-bold">
-                            <li>Shared rooms (2 in 1)</li>
-                            <li>Free Wifi</li>
-                            <li>Free Food</li>
-                        </ol>
+            <div class='grid grid-cols-2 py-4 gap-6'>
 
-                        <span class="font-normal text-sm">Boys Hostel: Goalpara - Guwahati Rd</span>
+                <?php
 
-                        <form method="post" class="buttons flex gap-10 items-center">
-                            <p class="font-bold">Price: <span>3000</span> Rs</p>
-                            <button type="submit" name="rh-pg-book" class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
-                        </form>
-                    </div>
+                $load_pgs = " SELECT * FROM `pzp_pg_master` ";
+                $run_load_pgs = mysqli_query($conn, $load_pgs);
+                
 
-                    <div class="flex flex-col w-1/2 gap-4 h-full text-white">
-                        <picture class="h-4/5">
-                            <img src="./img/image1.jpg" alt="" class="object-cover w-full h-full">
-                        </picture>
+                while($result_load_pgs = mysqli_fetch_array($run_load_pgs)) {
 
-                        <button class="px-4 py-2 bg-blue-600 rounded-sm font-semibold hover:bg-blue-800">Get Contact Details</button>
+                    $pgid = $result_load_pgs['id'];
+                    $pgname = $result_load_pgs['pg_name'];
+                    $ownermail = $result_load_pgs['owner_email'];
+                    $pgphone = $result_load_pgs['pg_phone'];
+                    $address1 = $result_load_pgs['address1'];
+                    $address2 = $result_load_pgs['address2'];
+                    $pgtype = $result_load_pgs['pgtype'];
+                    $wifi = $result_load_pgs['wifi'];
+                    $food = $result_load_pgs['food'];
+                    $pgctgry = $result_load_pgs['pg_category'];
+                    $pgimg = $result_load_pgs['image'];
+                    $price = $result_load_pgs['price'];
 
-                    </div>
+                    foreach($result_load_pgs as $result_row) {
+
+                        echo "
+                    
+                        <div class='flex w-full h-80 border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4'>
+                            <div class='w-1/2 h-full flex flex-col gap-4 justify-between'>
+                                <h3 class='font-bold text-xl'>$pgname</h3>
+                                <p class='rating flex w-full gap-0.5 items-center'>
+                                    <span class='text-xs mr-2 font-bold'>Rating: </span>
+                                    <span class='text-xs mr-2 font-bold'>3.2</span>
+                                    <img src='./img/star-fill.png' alt='' class='w-4'>
+                                    <img src='./img/star-fill.png' alt='' class='w-4'>
+                                    <img src='./img/star-fill.png' alt='' class='w-4'>
+                                </p>
+
+                                <ol class='text-sm font-bold'>
+                                    <li>$pgtype</li>
+                                    <li>$wifi</li>
+                                    <li>$food</li>
+                                </ol>
+
+                                <span class='font-normal text-sm'>$pgctgry: $address1, $address2</span>
+
+                                <form method='post' class='buttons flex gap-10 items-center'>
+                                    <p class='font-bold'>Price: <span>$price</span> Rs</p>
+                                    <button type='submit' name='$pgid' class='bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400'>Book Now</button>
+                                </form>
+                            </div>
+
+                            <div class='flex flex-col w-1/2 gap-4 h-full text-white'>
+                                <picture class='h-4/5'>
+                                    <img src='./img/image1.jpg' alt='' class='object-cover w-full h-full'>
+                                </picture>
+
+                                <button class='px-4 py-2 bg-blue-600 rounded-sm font-semibold hover:bg-blue-800'>Get Contact Details</button>
+
+                            </div>
+                        </div>
+                    
+                        ";
+                        
+                        if(isset($_POST[$pgid])){
+                            
+                            if(array_key_exists('user_email', $_SESSION) == 0) {
+                                echo "<script>alert('Please Log in bitsssssss.');</script>";
+                            } else if (array_key_exists('user_email', $_SESSION) == 1) {
+                                // echo "<script>alert('$pgid');</script>";
+
+                                $_SESSION['pgid'] = $pgid; // use this in the payment page to fetch according data about the PG
+                                
+                                redirect_payment_page();
+                            }
+                        }
+                        
+
+                        break;
+                    }
+
+                    // break;  // if u uncomment this break it won't iterate between the rows and only one PG will pe shown in the index
+
+                }
+
+                ?>
+                    
                 </div>
-                <div class="flex w-1/2 h-80 border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4">
-                    <div class="w-1/2 h-full flex flex-col gap-4 justify-between">
-                        <h3 class="font-bold text-xl">Kalita Boys PG-3</h3>
-                        <p class="rating flex w-full gap-0.5 items-center">
-                            <span class="text-xs mr-2 font-bold">Rating: </span>
-                            <span class="text-xs mr-2 font-bold">5.0</span>
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                        </p>
-                        <!-- <h5 class="font-semibold">Specifications:</h5> -->
-                        <ol class="text-sm font-bold">
-                            <li>Shared rooms (2 in 1)</li>
-                            <li>Free Wifi</li>
-                            <li>Free Food</li>
-                        </ol>
+               
+                <?php
 
-                        <span class="font-normal text-sm">Boys Hostel: 4JHC+CXF Unnamed Rd</span>
-
-                        <form method="post" class="buttons flex gap-10 items-center">
-                            <p class="font-bold">Price: <span>3000</span> Rs</p>
-                            <button type="submit" name="kalita-pg-book" class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
-                        </form>
-                    </div>
-
-                    <div class="flex flex-col w-1/2 gap-4 h-full text-white">
-                        <picture class="h-4/5">
-                            <img src="./img/image1.jpg" alt="" class="object-cover w-full h-full">
-                        </picture>
-
-                        <button class="px-4 py-2 bg-blue-600 rounded-sm font-semibold hover:bg-blue-800">Get Contact Details</button>
-
-                    </div>
-                </div>
-            </div>
-            <div class="flex w-full py-4 gap-6">
-                <div class="flex w-1/2 h-80 border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4">
-                    <div class="w-1/2 h-full flex flex-col gap-4 justify-between">
-                        <h3 class="font-bold text-xl">RH PG</h3>
-                        <p class="rating flex w-full gap-0.5 items-center">
-                            <span class="text-xs mr-2 font-bold">Rating: </span>
-                            <span class="text-xs mr-2 font-bold">3.2</span>
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                        </p>
-                        <!-- <h5 class="font-semibold">Specifications:</h5> -->
-                        <ol class="text-sm font-bold">
-                            <li>Shared rooms (2 in 1)</li>
-                            <li>Free Wifi</li>
-                            <li>Free Food</li>
-                        </ol>
-
-                        <span class="font-normal text-sm">Boys Hostel: Goalpara - Guwahati Rd</span>
-
-                        <form method="post" class="buttons flex gap-10 items-center">
-                            <p class="font-bold">Price: <span>3000</span> Rs</p>
-                            <button type="submit" name="rh-pg-book" class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
-                        </form>
-                    </div>
-
-                    <div class="flex flex-col w-1/2 gap-4 h-full text-white">
-                        <picture class="h-4/5">
-                            <img src="./img/image1.jpg" alt="" class="object-cover w-full h-full">
-                        </picture>
-
-                        <button class="px-4 py-2 bg-blue-600 rounded-sm font-semibold hover:bg-blue-800">Get Contact Details</button>
-
-                    </div>
-                </div>
-                <div class="flex w-1/2 h-80 border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4">
-                    <div class="w-1/2 h-full flex flex-col gap-4 justify-between">
-                        <h3 class="font-bold text-xl">Kalita Boys PG-3</h3>
-                        <p class="rating flex w-full gap-0.5 items-center">
-                            <span class="text-xs mr-2 font-bold">Rating: </span>
-                            <span class="text-xs mr-2 font-bold">5.0</span>
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                            <img src="./img/star-fill.png" alt="" class="w-4">
-                        </p>
-                        <!-- <h5 class="font-semibold">Specifications:</h5> -->
-                        <ol class="text-sm font-bold">
-                            <li>Shared rooms (2 in 1)</li>
-                            <li>Free Wifi</li>
-                            <li>Free Food</li>
-                        </ol>
-
-                        <span class="font-normal text-sm">Boys Hostel: 4JHC+CXF Unnamed Rd</span>
-
-                        <form method="post" class="buttons flex gap-10 items-center">
-                            <p class="font-bold">Price: <span>3000</span> Rs</p>
-                            <button type="submit" name="kalita-pg-book" class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400">Book Now</button>
-                        </form>
-                    </div>
-
-                    <div class="flex flex-col w-1/2 gap-4 h-full text-white">
-                        <picture class="h-4/5">
-                            <img src="./img/image1.jpg" alt="" class="object-cover w-full h-full">
-                        </picture>
-
-                        <button class="px-4 py-2 bg-blue-600 rounded-sm font-semibold hover:bg-blue-800">Get Contact Details</button>
-
-                    </div>
-                </div>
-            </div>
+            ?>
 
 
         </section>

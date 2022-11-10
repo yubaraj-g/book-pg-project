@@ -29,7 +29,7 @@ session_start();
 
 
     <main class="px-20 pt-6 pb-12 w-full flex flex-col items-center">
-        <h2 class="font-bold text-2xl mt-4">Your Booking Details :</h2>
+        <h2 class="font-bold text-2xl mt-4">Your Booking Details - Selected PG :</h2>
 
         <div class="flex flex-col w-full items-center">
             <!-- Booking details -->
@@ -43,107 +43,67 @@ session_start();
                 <span class="font-bold text-md">Boys Hostel: Goalpara - Guwahati Rd</span>
             </div>
 
-            <section class="flex flex-col border border-blue-200 rounded-md p-6 my-4 h-fit justify-between w-2/5 bg-white items-center">
-                <h1 class="font-bold text-2xl mb-2">Enter your tenacy details</h1>
-                <form action="" method="post" class="py-4 w-full flex flex-col gap-4 items-center bg-white">
-                    <div class="flex gap-4 flex items-center w-full">
-                        <label for="fullname" class="text-md font-medium w-[30%]">Full Name *</label>
-                        <input type="text" name="fullname" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="flex gap-4 flex items-center w-full">
-                        <label for="phone" class="text-md font-medium w-[30%]">Phone No. *</label>
-                        <input type="tel" name="phone" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your phone number" maxlength="10" required>
-                    </div>
-                    <div class="flex gap-4 flex items-center w-full">
-                        <label for="email" class="text-md font-medium w-[30%]">Email *</label>
-                        <input type="text" name="email" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your email id" required>
-                    </div>
-                    <div class="flex gap-4 flex items-center w-full">
-                        <label for="address" class="text-md font-medium w-[30%]">Address *</label>
-                        <input type="text" name="address" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your permanent address" required>
-                    </div>
-                    <div class="flex gap-4 flex items-center w-full">
-                        <label for="age" class="text-md font-medium w-[30%]">Age *</label>
-                        <input type="text" name="age" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your age" required>
+            <section class="flex flex-col rounded-md my-4 h-fit justify-between w-2/5 bg-white items-center">
+
+                <form method="POST" action="./send-mail.php" class="py-4 px-6 w-full flex flex-col gap-4 items-center bg-white rounded-md border border-gray-200 shadow-lg">
+                    <div class="tenacy-details w-full flex flex-col gap-4">
+                        <h1 class="font-bold text-2xl mb-2">Enter your tenacy details</h1>
+                        <div class="flex gap-4 flex items-center w-full">
+                            <label for="fullname" class="text-md font-medium w-[30%]">Full Name *</label>
+                            <input type="text" name="fullname" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="flex gap-4 flex items-center w-full">
+                            <label for="phone" class="text-md font-medium w-[30%]">Phone No. *</label>
+                            <input type="tel" name="phone" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your phone number" maxlength="10" required>
+                        </div>
+                        <div class="flex gap-4 flex items-center w-full">
+                            <label for="email" class="text-md font-medium w-[30%]">Email *</label>
+                            <input type="email" name="email" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your email id" required>
+                        </div>
+                        <div class="flex gap-4 flex items-center w-full">
+                            <label for="address" class="text-md font-medium w-[30%]">Address *</label>
+                            <input type="text" name="address" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your permanent address" required>
+                        </div>
+                        <div class="flex gap-4 flex items-center w-full">
+                            <label for="age" class="text-md font-medium w-[30%]">Age *</label>
+                            <input type="text" name="age" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your age" required>
+                        </div>
                     </div>
 
-                    <button type="submit" name="submit" class="py-3 px-6 w-fit flex self-center text-center bg-blue-600 text-white rounded-lg hover:bg-blue-900 font-bold text-2xl">submit</button>
+                    <div class="w-full h-[1px] bg-gray-300 my-6"></div>
+
+                    <div class="payment-details w-full flex flex-col gap-4">
+                        <h1 class="font-extrabold text-3xl mt-0 mb-4">Payment Info :</h1>
+                        <!-- <span class="font-bold text-lg my-2 text-gray-500 mb-4">Payment Details</span> -->
+                        <div class="flex gap-4 flex items-center w-full">
+                            <label for="card" class="text-md font-medium w-[30%]">Card Number *</label>
+                            <input type="text" name="card" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your 16 digit card number" required>
+                        </div>
+                        <div class="flex gap-4 flex items-center w-full">
+                            <label for="expdate" class="text-md font-medium w-[30%]">Expiration Date *</label>
+                            <input type="month" name="expdate" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="" required>
+                        </div>
+                        <div class="flex gap-4 flex items-center w-full">
+                            <label for="cvv" class="text-md font-medium w-1/2">Security Code (CVV) *</label>
+                            <input type="number" name="cvv" class="w-1/2 px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="3 digits CVV no." required>
+                        </div>
+                        <div class="flex gap-4 flex items-center w-full">
+                            <h6 class="text-md font-medium w-2/5">Payment Amount (Rs)</h6>
+                            <span name="amount" class="w-3/5 px-3 py-2 font-bold text-xl">3000</span>
+                            <input type="hidden" name="amount" value="3000">
+                        </div>
+                    </div>
+
+                    <button name="paynow" class="py-3 my-4 px-6 w-full text-center bg-blue-600 text-white rounded-lg hover:bg-blue-900 font-bold text-2xl" type="submit">Pay Now</button>
+
                 </form>
+
             </section>
 
             <!-- Payment details -->
-            <div class="payment flex flex-col py-4 w-1/2 items-center">
-                <h1 class="font-extrabold text-3xl mt-6 mb-4">Payment Info :</h1>
-                <span class="font-bold text-lg my-2 text-gray-500 mb-4">Payment Details</span>
-                <!-- <div class="h-[1px] w-full bg-gray-200"></div> -->
-                <!-- <p class="font-extrabold text-2xl">Price: <span id="amount">3000</span> Rs</p> -->
+            <section class="payment flex flex-col py-4 w-1/2 items-center">
 
-                <form method="POST" class="py-4 px-6 w-4/5 flex flex-col gap-4 items-center bg-white rounded-md border border-gray-200 shadow-lg">
-                    <div class="flex gap-4 flex items-center w-full">
-                        <label for="card" class="text-md font-medium w-[30%]">Card Number *</label>
-                        <input type="text" name="card" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="Enter your 16 digit card number" required>
-                    </div>
-                    <div class="flex gap-4 flex items-center w-full">
-                        <label for="card" class="text-md font-medium w-[30%]">Expiration Date *</label>
-                        <input type="month" name="card" class="w-[70%] px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="" required>
-                    </div>
-                    <div class="flex gap-4 flex items-center w-full">
-                        <label for="card" class="text-md font-medium w-1/2">Security Code (CVV) *</label>
-                        <input type="number" name="card" class="w-1/2 px-3 py-2 border border-gray-300 rounded focus:outline-2 focus:outline-blue-400" placeholder="3 digits CVV no." required>
-                    </div>
-
-                    <button name="paynow" class="py-3 px-6 w-full text-center bg-blue-600 text-white rounded-lg hover:bg-blue-900 font-bold text-2xl" type="submit">Pay Now</button>
-                </form>
-
-                <?php
-
-                while (array_key_exists('user_email', $_SESSION) == 1) {
-                    $session_mail = $_SESSION['user_email'];
-
-                    // $check_user = " SELECT * FROM pzp_user_masters WHERE `user_email` = '$session_mail' ";
-                    // $run_check_user = mysqli_query($conn, $check_user);
-                    // $all_data = mysqli_fetch_assoc($run_check_user);
-
-                    // while($all_data) {
-                    //     $_SESSION['username'] = $all_data['user_name'];
-                    //     $sess_usernm = $_SESSION['username'];
-
-
-
-
-                    //     break;
-                    // }
-
-                    if (isset($_POST['paynow'])) {
-                        $email = $session_mail;
-                        $subject = "Booking Successful - PG GO";
-                        $body = "Hi there, your PG booking has been successful in PG GO";
-                        $headers = "From: yuvrajwebdev@gmail.com";
-
-                        if (mail($email, $subject, $body, $headers)) {
-                            $sccsspage = "./booking_sucss.php";
-                            header('location: ' . $sccsspage);
-                            exit();
-                        } else {
-                            echo "Email send fail!";
-                        }
-                    }
-
-                    break;
-                }
-
-                if (!array_key_exists('user_email', $_SESSION)) {
-                    // $session_mail = $_SESSION['user_email'];
-
-                    echo "<script>alert('Please Log In.');</script>";
-                ?>
-                    <meta http-equiv="refresh" content="0; url = http://localhost/prerna/login.php" />
-                <?php
-
-                }
-
-                ?>
-            </div>
+            </section>
         </div>
     </main>
 </body>
