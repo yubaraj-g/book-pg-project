@@ -20,7 +20,7 @@ include('../php/connect.php');
 
 <body class="flex justify-center items-center w-full h-screen">
     <section class="bg-blue-200 w-2/5 p-10 rounded-md shadow-lg">
-        <form action="./insert_owner.php" method="POST" class="flex flex-col justify-center items-center gap-3">
+        <form action="./insert-owner.php" method="POST" class="flex flex-col justify-center items-center gap-3">
             <h1 class="font-extrabold text-2xl mb-3">PG Owner - Signup</h1>
             <input type="text" name="name" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your full name" required>
             <input type="tel" name="phone" class="w-3/5 border border-blue-300 shadow-md focus:outline focus:outline-blue-600 px-3 py-2 text-sm rounded-sm" placeholder="Enter your phone number (+91)" maxlength="10" required>

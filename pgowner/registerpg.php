@@ -149,9 +149,9 @@ if (!array_key_exists('owner_email', $_SESSION)) {
     </main>
 
     <section class="showPgList px-20 w-full flex flex-col pt-6 pb-16 gap-6">
-        <div class="w-full flex justify-center">
+        <!-- <div class="w-full flex justify-center">
             <h2 class="font-extrabold text-4xl text-blue-500">PGs listed by you</h2>
-        </div>
+        </div> -->
 
         <div class="pgList w-full flex justify-center">
 
@@ -233,7 +233,7 @@ if (!array_key_exists('owner_email', $_SESSION)) {
 
                         <?php
 
-                        $boarders = " SELECT * FROM `pzp_boarder_master` ";
+                        $boarders = " SELECT * FROM `pzp_tenancy_dtls` WHERE `owner_email` = '$owner_mail' ";
                         $run_boarders = mysqli_query($conn, $boarders);
 
                         while($result_brdrs = mysqli_fetch_array($run_boarders)) {
@@ -243,11 +243,11 @@ if (!array_key_exists('owner_email', $_SESSION)) {
                                 ?>
 
                                 <tr class="bg-blue-50 text-sm">
-                                    <td class="border border-blue-400 py-2 px-3 text-start"><?php echo $result_brdrs['full_name']; ?></td>
-                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['phone']; ?></td>
-                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['e_mail']; ?></td>
-                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['address']; ?></td>
-                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['age']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-start"><?php echo $result_brdrs['boarder_name']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['boarder_phone']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['boarder_email']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['boarder_address']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['boarder_age']; ?></td>
                                     <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['amount_paid']; ?></td>
                                 </tr>
 

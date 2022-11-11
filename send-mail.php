@@ -42,8 +42,6 @@ if (!array_key_exists('user_email', $_SESSION)) {
 
     $run_insert_tenant = mysqli_query($conn, $insert_tenant);
 
-    
-    
 
     // get the owner email id as well
 
@@ -79,6 +77,12 @@ if (!array_key_exists('user_email', $_SESSION)) {
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
     
         $mail->send();
+
+        // insert data into tenacy details page
+        $insert_tenacy = " INSERT INTO `pzp_tenancy_dtls` (`owner_email`,`pg_name`,`boarder_name`,`boarder_phone`,`boarder_email`,`boarder_address`,`boarder_age`,`amount_paid`) VALUES ('$pgownermail', '$pgname', '$fullname', '$phone', '$email', '$address', '$age', '$amount') ";
+
+        mysqli_query($conn, $insert_tenacy);
+
         echo "<script>alert('Email has been sent');</script>";
         ?>
         <meta http-equiv="refresh" content="0; url = http://localhost/prerna/booking-sucss.php" />
