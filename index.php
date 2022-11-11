@@ -25,9 +25,15 @@ while(array_key_exists('user_email', $_SESSION) == 1) {
 
     function redirect_payment_page() {
         
-        $paymentpage = "./payment.php";
-        header('Location: ' . $paymentpage);
-        die();
+        // $paymentpage = "./payment.php";
+        // header('Location: ' . $paymentpage);
+        // die();
+
+        ?>
+
+        <meta http-equiv="refresh" content="0; url = http://localhost/prerna/payment.php" />
+
+        <?php
         
     }
 
