@@ -72,9 +72,9 @@ if (!array_key_exists('owner_email', $_SESSION)) {
     </header>
 
     <main class="px-20 w-full flex flex-col pb-16">
-        <div class="w-full flex flex-start py-4 border-b border-gray-200">
+        <!-- <div class="w-full flex flex-start py-4 border-b border-gray-200">
             <h2 class="text-lg font-semibold text-gray-400">You don't have a PG listed.</h2>
-        </div>
+        </div> -->
 
         <div class="flex w-full flex-col py-6 gap-6 items-center">
             <div class="flex flex-col w-3/5 bg-white rounded-md border border-blue-200 p-8 gap-6">
