@@ -188,11 +188,11 @@ while(!array_key_exists('user_email', $_SESSION)){
                             </div>
 
                             <div class='flex flex-col w-1/2 gap-4 h-full text-white'>
-                                <picture class='h-4/5'>
+                                <picture class='h-full'>
                                     <img src='./img/image1.jpg' alt='' class='object-cover w-full h-full'>
                                 </picture>
 
-                                <button class='px-4 py-2 bg-blue-600 rounded-sm font-semibold hover:bg-blue-800'>Get Contact Details</button>
+                                
 
                             </div>
                         </div>

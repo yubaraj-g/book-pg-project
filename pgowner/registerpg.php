@@ -62,7 +62,6 @@ if (!array_key_exists('owner_email', $_SESSION)) {
                 </script>
                 ";
 
-
                 break;
             }
 
@@ -155,37 +154,60 @@ if (!array_key_exists('owner_email', $_SESSION)) {
         </div>
 
         <div class="pgList w-full flex justify-center">
-            <div class="flex w-3/5 h-80 border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4">
-                <div class="w-1/2 h-full flex flex-col gap-4 justify-between">
-                    <h3 class="font-bold text-xl">RH PG</h3>
-                    <p class="rating flex w-full gap-0.5 items-center">
-                        <span class="text-xs mr-2 font-bold">Rating: </span>
-                        <span class="text-xs mr-2 font-bold">3.2</span>
-                        <img src="../img/star-fill.png" alt="star-rating" class="w-4">
-                        <img src="../img/star-fill.png" alt="star-rating" class="w-4">
-                        <img src="../img/star-fill.png" alt="star-rating" class="w-4">
-                    </p>
-                    <!-- <h5 class="font-semibold">Specifications:</h5> -->
-                    <ol class="text-sm font-bold">
-                        <li>Shared rooms (2 in 1)</li>
-                        <li>Free Wifi</li>
-                        <li>Free Food</li>
-                    </ol>
 
-                    <span class="font-normal text-sm">Boys Hostel: Goalpara - Guwahati Rd</span>
+        <?php
 
-                    <div class="buttons flex gap-10 items-center">
-                        <p class="font-bold">Price: <span>3000</span> Rs</p>
-                        <!-- <button class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400"><a href="./payment.php">Book Now</a></button> -->
+        $load_pgs = " SELECT * FROM `pzp_pg_master` WHERE `owner_email` = '$owner_mail' ";
+        $run_load_pgs = mysqli_query($conn, $load_pgs);
+
+        while($result_pgs = mysqli_fetch_array($run_load_pgs)) {
+
+            foreach($result_pgs as $res_pg) {
+
+                ?>
+
+                <div class="flex w-3/5 h-80 border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4">
+                    <div class="w-1/2 h-full flex flex-col gap-4 justify-between">
+                        <h3 class="font-bold text-xl"><?php echo $result_pgs['pg_name']; ?></h3>
+                        <p class="rating flex w-full gap-0.5 items-center">
+                            <span class="text-xs mr-2 font-bold">Rating: </span>
+                            <span class="text-xs mr-2 font-bold">3.2</span>
+                            <img src="../img/star-fill.png" alt="star-rating" class="w-4">
+                            <img src="../img/star-fill.png" alt="star-rating" class="w-4">
+                            <img src="../img/star-fill.png" alt="star-rating" class="w-4">
+                        </p>
+                        <!-- <h5 class="font-semibold">Specifications:</h5> -->
+                        <ol class="text-sm font-bold">
+                            <li><?php echo $result_pgs['pgtype']; ?></li>
+                            <li><?php echo $result_pgs['wifi']; ?></li>
+                            <li><?php echo $result_pgs['food']; ?></li>
+                        </ol>
+
+                        <span class="font-normal text-sm"><?php echo $result_pgs['pg_category'] . ": " . $result_pgs['address1'] . "-" . $result_pgs['address2']; ?></span>
+
+                        <div class="buttons flex gap-10 items-center">
+                            <p class="font-bold">Price: <span><?php echo $result_pgs['price']; ?></span> Rs</p>
+                            <!-- <button class="bg-blue-600 px-4 py-2 text-white rounded-md shadow-md hover:shadow-lg hover:bg-blue-800 hover:shadow-blue-400"><a href="./payment.php">Book Now</a></button> -->
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col w-1/2 gap-4 h-full text-white">
+                        <picture class="h-full">
+                            <img src="../img/image1.jpg" alt="" class="object-cover w-full h-full">
+                        </picture>
                     </div>
                 </div>
 
-                <div class="flex flex-col w-1/2 gap-4 h-full text-white">
-                    <picture class="h-full">
-                        <img src="../img/image1.jpg" alt="" class="object-cover w-full h-full">
-                    </picture>
-                </div>
-            </div>
+                <?php
+
+                break;
+            }
+        }
+
+        ?>
+
+
+            
         </div>
     </section>
 
@@ -195,7 +217,7 @@ if (!array_key_exists('owner_email', $_SESSION)) {
         </div>
 
         <div class="w-full flex justify-center">
-            <div class="flex w-3/5 h-80 border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4">
+            <div class="flex w-3/5 h-fit border border-blue-200 rounded-sm shadow-lg p-6 bg-white gap-4">
                 <!-- name phone email address age -->
                 <div class="overflow-hidden rounded-md w-full">
                     <table class="w-full rounded-lg">
@@ -205,15 +227,39 @@ if (!array_key_exists('owner_email', $_SESSION)) {
                             <th class="border border-blue-400 py-2 px-3">Email</th>
                             <th class="border border-blue-400 py-2 px-3">Address</th>
                             <th class="border border-blue-400 py-2 px-3">Age</th>
+                            <th class="border border-blue-400 py-2 px-3">Amount Paid</th>
                             <!-- <th class="border border-blue-400 py-2 px-3">PG Name</th> -->
                         </tr>
-                        <tr class="bg-blue-50 text-sm">
-                            <td class="border border-blue-400 py-2 px-3 text-start">Tenant 1</td>
-                            <td class="border border-blue-400 py-2 px-3 text-center">1234567890</td>
-                            <td class="border border-blue-400 py-2 px-3 text-center">xyz@gmail.com</td>
-                            <td class="border border-blue-400 py-2 px-3 text-center">Hometown</td>
-                            <td class="border border-blue-400 py-2 px-3 text-center">23</td>
-                        </tr>
+
+                        <?php
+
+                        $boarders = " SELECT * FROM `pzp_boarder_master` ";
+                        $run_boarders = mysqli_query($conn, $boarders);
+
+                        while($result_brdrs = mysqli_fetch_array($run_boarders)) {
+
+                            foreach($result_brdrs as $res) {
+
+                                ?>
+
+                                <tr class="bg-blue-50 text-sm">
+                                    <td class="border border-blue-400 py-2 px-3 text-start"><?php echo $result_brdrs['full_name']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['phone']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['e_mail']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['address']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['age']; ?></td>
+                                    <td class="border border-blue-400 py-2 px-3 text-center"><?php echo $result_brdrs['amount_paid']; ?></td>
+                                </tr>
+
+                                <?php
+
+                                break;
+                            }
+                        }
+
+                        ?>
+
+
                     </table>
                 </div>
             </div>
