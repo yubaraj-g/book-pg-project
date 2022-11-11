@@ -202,7 +202,7 @@ while(!array_key_exists('user_email', $_SESSION)){
                         if(isset($_POST[$pgid])){
                             
                             if(array_key_exists('user_email', $_SESSION) == 0) {
-                                echo "<script>alert('Please Log in bitsssssss.');</script>";
+                                echo "<script>alert('Please Log in to start booking.');</script>";
                             } else if (array_key_exists('user_email', $_SESSION) == 1) {
                                 // echo "<script>alert('$pgid');</script>";
 
