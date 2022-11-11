@@ -22,6 +22,15 @@ if (!array_key_exists('user_email', $_SESSION)) {
 } else {
     $session_mail = $_SESSION['user_email'];
 
+    $pgownermail = $_POST['pgownermail'];
+    $pgphone = $_POST['pgphone'];
+    $pgname = $_POST['pgname'];
+    $pgtype = $_POST['pgtype'];
+    $wifi = $_POST['wifi'];
+    $food = $_POST['food'];
+    $address1 = $_POST['address1'];
+    $address2 = $_POST['address2'];
+
     $fullname = $_POST['fullname'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
@@ -32,6 +41,8 @@ if (!array_key_exists('user_email', $_SESSION)) {
     $insert_tenant = " INSERT INTO `pzp_boarder_master` (`full_name`,`phone`,`e_mail`,`address`,`age`,`amount_paid`) VALUES ('$fullname','$phone','$email','$address','$age','$amount') ";
 
     $run_insert_tenant = mysqli_query($conn, $insert_tenant);
+
+    
     
 
     // get the owner email id as well
@@ -49,8 +60,8 @@ if (!array_key_exists('user_email', $_SESSION)) {
     
         //Recipients
         $mail->setFrom('yuvrajwebdev@gmail.com', 'PG GO');          //sender mail
-        $mail->addAddress($email, '$fullname');                 //recipient mail
-        $mail->addAddress('ellen@example.com');               //second mail
+        $mail->addAddress($email, $fullname);                 //recipient mail
+        $mail->addAddress($pgownermail);               //second mail
         //$mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');
         //$mail->addBCC('bcc@example.com');
@@ -62,11 +73,13 @@ if (!array_key_exists('user_email', $_SESSION)) {
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Booking Successful - PG GO';
-        $mail->Body    = 'Hi there, your PG booking has been successful in PG GO';
+
+        $mail->Body = "PG booking for PG Name: $pgname , PG Description: $pgtype, $wifi, $food, PG Price: $amount, PG Location: $address1, $address2 is successful. Tenant Details are > Name : $fullname, Phone: $phone, Email: $email, Address: $address, Age: $age. Owner details of the PG > Owner Email: $pgownermail, PG Contact Number: $pgphone. Thanks. PGGO. ";
+
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
     
         $mail->send();
-        echo "<script>alert('Message has been sent');</script>";
+        echo "<script>alert('Email has been sent');</script>";
         ?>
         <meta http-equiv="refresh" content="0; url = http://localhost/prerna/booking-sucss.php" />
         <?php
