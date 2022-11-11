@@ -147,7 +147,7 @@ session_start();
                     <div class="flex gap-4 flex items-center w-full">
                         <h6 class="text-md font-medium w-2/5">Payment Amount :</h6>
                         <span class="w-3/5 px-3 py-2 font-bold text-xl"><?php echo $price . " Rs"; ?></span>
-                        <input type="hidden" name="amount">
+                        <input type="hidden" name="amount" value="<?php echo $price; ?>">
                     </div>
                 </div>
 
